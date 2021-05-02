@@ -9,7 +9,7 @@ class App extends Component {
     employees: []
   }
 
-    handleSort = (key, asc) => {
+  handleSort = (key, asc) => {
 
       let empSorted = [...this.state.employees];
       empSorted.sort( (a, b) => {
@@ -29,6 +29,12 @@ class App extends Component {
     });
   }
 
+  hnadleFilter = gender => {
+    // console.log(this.state);
+    this.setState({
+      employees: this.state.employees.filter(employees => employees.gender == gender)
+    });
+  }
 
   render() {
     return (
@@ -54,7 +60,7 @@ class App extends Component {
                     <td >
                       {employee.name.last}
                     </td>
-                    <td >
+                    <td onClick={() => this.hnadleFilter(employee.gender)}>
                       {employee.gender === 'male' ? <FontAwesomeIcon icon={faMars} /> : <FontAwesomeIcon icon={faVenus} />}
                     </td>
                   </tr>
